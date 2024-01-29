@@ -9,7 +9,7 @@
   </div>
   <div
     *ngIf="!user"
-    class="mx-auto flex h-screen flex-col items-center justify-center px-6 py-8"
+    class="mx-auto flex flex-col items-center justify-center px-6 py-8"
   >
     <div
       class="w-full max-w-md rounded-lg border-4 border-gray-900 bg-secondary shadow"
@@ -200,15 +200,15 @@
                 >password is required </label
               ><label
                 *ngIf="
-                    signupFormControls['password'].errors?.['noSpaceValidator']
-                  "
+                      signupFormControls['password'].errors?.['noSpaceValidator']
+                    "
                 >password should not contain spaces</label
               >
               <label
                 *ngIf="
-                    signupFormControls['password'].errors?.['minlength'] &&
-                    !signupFormControls['password'].errors?.['noSpaceValidator']
-                  "
+                      signupFormControls['password'].errors?.['minlength'] &&
+                      !signupFormControls['password'].errors?.['noSpaceValidator']
+                    "
                 >password should contain atleast 6 characters</label
               >
             </div>
@@ -237,15 +237,15 @@
                 >phone is required </label
               ><label
                 *ngIf="
-                    signupFormControls['phone'].errors?.['noSpaceValidator']
-                  "
+                      signupFormControls['phone'].errors?.['noSpaceValidator']
+                    "
                 >phone should not contain spaces</label
               >
               <label
                 *ngIf="
-                    (signupFormControls['phone'].errors?.['minlength'] || signupFormControls['phone'].errors?.['maxlength'])&&
-                    !signupFormControls['phone'].errors?.['noSpaceValidator']
-                  "
+                      (signupFormControls['phone'].errors?.['minlength'] || signupFormControls['phone'].errors?.['maxlength'])&&
+                      !signupFormControls['phone'].errors?.['noSpaceValidator']
+                    "
                 >phone should contain exactly 10 numbers</label
               >
             </div>
