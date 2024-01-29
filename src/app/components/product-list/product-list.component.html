@@ -1,0 +1,98 @@
+<div class="relative w-full">
+  <div class="mx-1 my-4">
+    <label
+      for="default-search"
+      class="sr-only mb-2 text-sm font-medium text-textg"
+      >Search</label
+    >
+    <div class="relative">
+      <form [formGroup]="searchForm" (ngSubmit)="searchProducts()">
+        <div
+          class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"
+        >
+          <svg
+            class="h-4 w-4 text-gray-500"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 20 20"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+            />
+          </svg>
+        </div>
+        <input
+          type="text"
+          id="default-search"
+          class="block w-full rounded-lg border border-textg bg-secondary p-4 pl-10 text-sm text-textp focus:border-blue-500 focus:ring-blue-500"
+          placeholder="Search product name, description..."
+          formControlName="searchText"
+        />
+        <button
+          type="submit"
+          class="absolute bottom-2.5 right-2.5 rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300"
+        >
+          Search
+        </button>
+      </form>
+    </div>
+  </div>
+  <div
+    *ngIf="!products[0]"
+    class="mb-10 flex min-h-[300px] w-full flex-col items-center justify-center"
+  >
+    <h1 class="text-center text-xl text-textp">No products available!</h1>
+  </div>
+  <div
+    *ngIf="products[0]"
+    class="grid w-full grid-cols-2 gap-6 p-5 sm:grid-cols-2 lg:grid-cols-3 cXl:grid-cols-4"
+  >
+    <div
+      *ngFor="let product of products; let productIndex = index"
+      class="card card-compact justify-between bg-secondary shadow-xl hover:cursor-pointer hover:shadow-gray-700"
+      routerLink="/product/{{ product.id }}"
+    >
+      <figure class="h-64">
+        <img
+          class="h-full w-full object-cover"
+          [src]="product.thumbnail"
+          alt="cover"
+        />
+      </figure>
+      <div class="card-body flex flex-col justify-between">
+        <h2 class="card-title line-clamp-1">{{ product.title }}</h2>
+        <p class="line-clamp-3 text-textg">
+          {{ product.description }}
+        </p>
+        <div class="text-start">
+          <span class="font-semibold text-lg text-red-400"
+            >&#8377; {{ product.price }}</span
+          >
+        </div>
+        <div class="card-actions flex-col items-center justify-between">
+          <div class="flex items-center space-x-2">
+            <p class="w-32 truncate font-semibold">
+              {{ product.brand }}
+            </p>
+            <span class="font-semibold text-textg"
+              >Rating: {{ product.rating }}</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="loading">
+    <div
+      class="absolute inset-0 flex items-center justify-center rounded-lg bg-black bg-opacity-80 text-primary"
+    >
+      <span class="loading loading-bars w-20"></span>
+    </div>
+  </div>
+</div>

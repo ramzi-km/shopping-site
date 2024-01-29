@@ -1,1 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@import "node_modules/boxicons/css/boxicons.min.css";
+
+:root {
+  --primary-color: #ff0000; /* Red */
+  --secondary-color: #ffffff; /* White */
+  --accent-color: #ff4500; /* Brighter Red */
+  --textP-color: #333333; /* Dark Gray for Primary Text */
+  --textS-color: #555555; /* Medium Gray for Secondary Text */
+  --textG-color: #6c757d; /* Gray for Generic Text */
+  --bg-color: #f4f4f4; /* Light Gray Background */
+}
+body {
+  background-color: var(--bg-color);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

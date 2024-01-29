@@ -1,0 +1,268 @@
+<section class="bg-bgclr">
+  <div *ngIf="user">
+    <p class="text-texts font-bold">firstName: {{ user.firstName }}</p>
+    <p class="text-texts font-bold">lastName: {{ user.lastName }}</p>
+    <p class="text-texts font-bold">age: {{ user.age }}</p>
+    <p class="text-texts font-bold">email: {{ user.email }}</p>
+    <p class="text-texts font-bold">username: {{ user.username }}</p>
+    <p class="text-texts font-bold">phone: {{ user.phone }}</p>
+  </div>
+  <div
+    *ngIf="!user"
+    class="mx-auto flex h-screen flex-col items-center justify-center px-6 py-8"
+  >
+    <div
+      class="w-full max-w-md rounded-lg border-4 border-gray-900 bg-secondary shadow"
+    >
+      <div class="space-y-6 p-6">
+        <h1 class="text-center text-2xl font-bold text-gray-900">
+          Create account
+        </h1>
+        <div class="alert alert-error relative my-3" *ngIf="errMessage">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            class="h-6 w-6 shrink-0 stroke-current"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            ></path>
+          </svg>
+          <span>{{ errMessage }}</span>
+          <button
+            type="button"
+            class="absolute right-2.5 top-2.5 ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900"
+            (click)="errMessage = ''"
+          >
+            <i class="bx bx-x text-2xl"></i>
+          </button>
+        </div>
+        <form
+          class="space-y-6"
+          [formGroup]="signupForm"
+          (ngSubmit)="submitForm()"
+        >
+          <div>
+            <label for="" class="mb-2 block text-sm font-medium text-gray-900">
+              First Name
+            </label>
+            <input
+              formControlName="firstName"
+              type="text"
+              name="name"
+              placeholder="first name"
+              class="input input-bordered w-full border-2 border-black"
+            />
+            <div
+              class="text-sm text-red-500"
+              *ngIf="
+                signupFormControls['firstName'].touched &&
+                signupFormControls['firstName'].invalid
+              "
+            >
+              <label
+                *ngIf="signupFormControls['firstName'].errors?.['required']"
+                >firstName is required </label
+              ><label
+                *ngIf="signupFormControls['firstName'].errors?.['noEmptySpaces']"
+                >firstName must be atleast 3 characters</label
+              >
+            </div>
+          </div>
+          <div>
+            <label for="" class="mb-2 block text-sm font-medium text-gray-900">
+              Last Name
+            </label>
+            <input
+              formControlName="lastName"
+              type="text"
+              name="name"
+              placeholder="last name"
+              class="input input-bordered w-full border-2 border-black"
+            />
+            <div
+              class="text-sm text-red-500"
+              *ngIf="
+                signupFormControls['lastName'].touched &&
+                signupFormControls['lastName'].invalid
+              "
+            >
+              <label *ngIf="signupFormControls['lastName'].errors?.['required']"
+                >lastName is required </label
+              ><label
+                *ngIf="signupFormControls['lastName'].errors?.['noEmptySpaces']"
+                >lastName must be atleast 3 characters</label
+              >
+            </div>
+          </div>
+          <div>
+            <label for="" class="mb-2 block text-sm font-medium text-gray-900">
+              Age
+            </label>
+            <input
+              formControlName="age"
+              type="number"
+              name="name"
+              max="120"
+              min="1"
+              placeholder="age"
+              class="input input-bordered w-full border-2 border-black"
+            />
+            <div
+              class="text-sm text-red-500"
+              *ngIf="
+                signupFormControls['age'].touched &&
+                signupFormControls['age'].invalid
+              "
+            >
+              <label *ngIf="signupFormControls['age'].errors?.['required']"
+                >age is required </label
+              ><label
+                *ngIf="signupFormControls['age'].errors?.['max'] ||signupFormControls['age'].errors?.['min']"
+                >age should be below 120 and above 1</label
+              >
+            </div>
+          </div>
+          <div>
+            <label for="" class="mb-2 block text-sm font-medium text-gray-900">
+              Email
+            </label>
+            <input
+              type="email"
+              name="email"
+              placeholder="example@gmail.com"
+              class="input input-bordered w-full border-2 border-black"
+              formControlName="email"
+            />
+            <div
+              class="text-sm text-red-500"
+              *ngIf="
+                signupFormControls['email'].touched &&
+                signupFormControls['email'].invalid
+              "
+            >
+              <label *ngIf="signupFormControls['email'].errors?.['required']"
+                >email is required </label
+              ><label *ngIf="signupFormControls['email'].errors?.['email']"
+                >not a valid email</label
+              >
+            </div>
+          </div>
+          <div>
+            <label for="" class="mb-2 block text-sm font-medium text-gray-900">
+              Username
+            </label>
+            <input
+              formControlName="username"
+              type="text"
+              name="name"
+              placeholder="username"
+              class="input input-bordered w-full border-2 border-black"
+            />
+            <div
+              class="text-sm text-red-500"
+              *ngIf="
+                signupFormControls['username'].touched &&
+                signupFormControls['username'].invalid
+              "
+            >
+              <label *ngIf="signupFormControls['username'].errors?.['required']"
+                >username is required </label
+              ><label
+                *ngIf="signupFormControls['username'].errors?.['noEmptySpaces']"
+                >username must be atleast 3 characters</label
+              >
+            </div>
+          </div>
+          <div>
+            <label for="" class="mb-2 block text-sm font-medium text-gray-900">
+              Password
+            </label>
+            <input
+              type="password"
+              name="password"
+              placeholder="********"
+              class="input input-bordered w-full border-2 border-black"
+              formControlName="password"
+            />
+            <div
+              class="text-sm text-red-500"
+              *ngIf="
+                signupFormControls['password'].touched &&
+                signupFormControls['password'].invalid
+              "
+            >
+              <label *ngIf="signupFormControls['password'].errors?.['required']"
+                >password is required </label
+              ><label
+                *ngIf="
+                    signupFormControls['password'].errors?.['noSpaceValidator']
+                  "
+                >password should not contain spaces</label
+              >
+              <label
+                *ngIf="
+                    signupFormControls['password'].errors?.['minlength'] &&
+                    !signupFormControls['password'].errors?.['noSpaceValidator']
+                  "
+                >password should contain atleast 6 characters</label
+              >
+            </div>
+          </div>
+          <div>
+            <label for="" class="mb-2 block text-sm font-medium text-gray-900">
+              Phone
+            </label>
+            <input
+              type="text"
+              name="phone"
+              placeholder="eg: 8756985439"
+              class="input input-bordered w-full border-2 border-black"
+              formControlName="phone"
+              maxlength="10"
+              minlength="10"
+            />
+            <div
+              class="text-sm text-red-500"
+              *ngIf="
+                signupFormControls['phone'].touched &&
+                signupFormControls['phone'].invalid
+              "
+            >
+              <label *ngIf="signupFormControls['phone'].errors?.['required']"
+                >phone is required </label
+              ><label
+                *ngIf="
+                    signupFormControls['phone'].errors?.['noSpaceValidator']
+                  "
+                >phone should not contain spaces</label
+              >
+              <label
+                *ngIf="
+                    (signupFormControls['phone'].errors?.['minlength'] || signupFormControls['phone'].errors?.['maxlength'])&&
+                    !signupFormControls['phone'].errors?.['noSpaceValidator']
+                  "
+                >phone should contain exactly 10 numbers</label
+              >
+            </div>
+          </div>
+          <button
+            [disabled]="signupForm.invalid"
+            type="submit"
+            class="btn btn-primary w-full text-white"
+          >
+            Signup
+            <span
+              *ngIf="loading"
+              class="loading loading-spinner loading-sm mb-1 ml-5 text-textp"
+            ></span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
