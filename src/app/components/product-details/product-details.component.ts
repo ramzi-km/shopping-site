@@ -14,6 +14,8 @@ export class ProductDetailsComponent {
   product!: Product;
   loading = true;
   loadProductErr = '';
+  images: string[] = [];
+  currImg = '';
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService
@@ -30,6 +32,8 @@ export class ProductDetailsComponent {
       .subscribe({
         next: (product) => {
           this.product = product;
+          this.images = [...product.images!];
+          this.currImg = product.thumbnail!;
           this.loading = false;
         },
         error: (err) => {

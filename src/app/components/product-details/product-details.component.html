@@ -11,15 +11,13 @@
       <div class="w-full px-4 md:w-1/2">
         <div class="sticky top-0 z-10 overflow-hidden">
           <div class="mb-6 lg:mb-10 lg:h-2/4">
-            <img
-              [src]="product.thumbnail"
-              class="object-cover w-full lg:h-full z-10"
-            />
+            <img [src]="currImg" class="object-contain w-full h-96 z-10" />
           </div>
           <div class="flex-wrap hidden md:flex">
-            <div *ngFor="let img of product.images" class="w-1/2 p-2 sm:w-1/4">
+            <div *ngFor="let img of images" class="w-1/2 p-2 sm:w-1/4">
               <a
                 class="block border border-transparent dark:border-transparent dark:hover:border-red-300 hover:border-red-300"
+                (click)="currImg = img"
               >
                 <img [src]="img" alt="" class="object-cover w-full lg:h-20" />
               </a>
@@ -79,3 +77,4 @@
     </div>
   </div>
 </section>
+
